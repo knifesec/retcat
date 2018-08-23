@@ -1,0 +1,19 @@
+version: '3'
+services:
+  prod: 
+    build: .
+    environment:
+      - npm_config_cache=node_modules/.npm-cache
+    command: sh -c "npm install && npm build"
+    working_dir: "/src/wretcat"
+    volumes:
+      - ".:/src/wretcat"
+  dev:
+    build: .
+    environment:
+      - npm_config_cache=node_modules/.npm-cache
+    command: sh -c "npm install && npm start"
+    network_mode: host
+    working_dir: "/src/wretcat"
+    volumes:
+      - ".:/src/wretcat"
